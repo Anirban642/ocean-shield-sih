@@ -358,19 +358,19 @@ const OceanDashboard = () => {
                       <div className="grid grid-cols-3 gap-2 md:flex md:space-x-2">
                         <button
                           type="button"
-                          className="col-span-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 md:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm md:text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
+                          className="col-span-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 md:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm md:text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
                         >
-                          📷 Camera
+                          Camera
                         </button>
                         <button
                           type="button"
-                          className="col-span-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 md:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm md:text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
+                          className="col-span-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 md:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm md:text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
                         >
-                          📍 Location
+                          Location
                         </button>
                         <button
                           type="submit"
-                          className="col-span-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 md:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm md:text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
+                          className="col-span-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 md:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm md:text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
                         >
                           Submit
                         </button>
