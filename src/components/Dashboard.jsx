@@ -11,35 +11,58 @@ const OceanDashboard = () => {
   const leafletMapRef = useRef(null);
 
   const hazards = [
-    { id: 1, name: "Marina Beach", type: "critical", lat: 13.0478, lng: 80.2619, severity: "Tsunami Warning" },
-    { id: 2, name: "Fort Kochi", type: "warning", lat: 9.9666, lng: 76.2427, severity: "High Waves" },
-    { id: 3, name: "Paradip Port", type: "info", lat: 20.3156, lng: 86.6239, severity: "Storm Watch" },
-    { id: 4, name: "Visakhapatnam", type: "critical", lat: 17.6868, lng: 83.2185, severity: "Coastal Flooding" }
-  ];
+  { id: 1, name: "Marina Beach", type: "critical", lat: 13.0478, lng: 80.2619, severity: "Tsunami Warning" },
+  { id: 2, name: "Fort Kochi", type: "warning", lat: 9.9666, lng: 76.2427, severity: "High Waves" },
+  { id: 3, name: "Paradip Port", type: "info", lat: 20.3156, lng: 86.6239, severity: "Storm Watch" },
+  { id: 4, name: "Visakhapatnam", type: "critical", lat: 17.6868, lng: 83.2185, severity: "Coastal Flooding" },
+  { id: 5, name: "Goa Beach", type: "warning", lat: 15.2993, lng: 74.1240, severity: "Tidal Surge" }
+];
+
 
   const alerts = [
-    { id: 1, type: "critical", title: "Tsunami Warning - East Coast", time: "10:30 AM", areas: "Tamil Nadu, Andhra Pradesh" },
-    { id: 2, type: "warning", title: "High Wave Alert - West Coast", time: "09:15 AM", areas: "Kerala, Karnataka" },
-    { id: 3, type: "info", title: "Storm Watch - Bay of Bengal", time: "08:00 AM", areas: "Odisha, West Bengal" }
-  ];
+  { id: 1, type: "critical", title: "Tsunami Warning - East Coast", time: "10:30 AM", areas: "Tamil Nadu, Andhra Pradesh" },
+  { id: 2, type: "warning", title: "High Wave Alert - West Coast", time: "09:15 AM", areas: "Kerala, Karnataka" },
+  { id: 3, type: "info", title: "Storm Watch - Bay of Bengal", time: "08:00 AM", areas: "Odisha, West Bengal" },
+  { id: 4, type: "advisory", title: "Fishing Ban - Rough Seas", time: "07:45 AM", areas: "Goa, Maharashtra" },
+  { id: 5, type: "update", title: "Rainfall Advisory - Coastal Region", time: "07:00 AM", areas: "Gujarat, Daman & Diu" }
+];
+
 
   const reports = [
-    { id: 1, time: '10:45 AM', location: 'Marina Beach, Chennai', type: 'High Waves', reporter: 'Citizen User', status: 'investigating' },
-    { id: 2, time: '10:30 AM', location: 'Fort Kochi, Kerala', type: 'Coastal Flooding', reporter: 'Local Authority', status: 'verified' },
-    { id: 3, time: '09:15 AM', location: 'Paradip Port', type: 'Storm Surge', reporter: 'Weather Station', status: 'verified' }
-  ];
+  { id: 1, time: '10:45 AM', location: 'Marina Beach, Chennai', type: 'High Waves', reporter: 'Citizen User', status: 'investigating' },
+  { id: 2, time: '10:30 AM', location: 'Fort Kochi, Kerala', type: 'Coastal Flooding', reporter: 'Local Authority', status: 'verified' },
+  { id: 3, time: '09:15 AM', location: 'Paradip Port', type: 'Storm Surge', reporter: 'Weather Station', status: 'verified' },
+  { id: 4, time: '08:50 AM', location: 'Goa Beach, Goa', type: 'Tidal Waves', reporter: 'Tourist Report', status: 'investigating' },
+  { id: 5, time: '08:20 AM', location: 'Visakhapatnam Coast', type: 'Unusual Currents', reporter: 'Fishermen', status: 'unverified' }
+];
+
 
   const socialPosts = [
     { platform: 'Twitter', time: '2 mins ago', location: 'Chennai', content: 'Unusual high waves at Marina Beach. Water levels rising rapidly. #ChennaiAlert' },
     { platform: 'Facebook', time: '5 mins ago', location: 'Kochi', content: 'Strange tidal patterns near Fort Kochi. Local fishermen advised caution.' },
-    { platform: 'Instagram', time: '12 mins ago', location: 'Visakhapatnam', content: 'Massive waves hitting the coast! Stay safe everyone. #Tsunami' }
+    { platform: 'Instagram', time: '12 mins ago', location: 'Visakhapatnam', content: 'Massive waves hitting the coast! Stay safe everyone. #Tsunami' },
+    { platform: 'Facebook', time: '17 mins ago', location: 'Goa', content: 'Some large waves are being seen in the Goa side. #Tsunami #StaySafe' },
+    { platform: 'Twitter', time: '20 mins ago', location: 'Puri', content: 'Strong currents and sudden wave surges near Puri Beach. Authorities monitoring closely. #OdishaAlert' }
+
   ];
 
   const trendingKeywords = [
-    { keyword: '#Tsunami', mentions: '2.3k', trend: 'Spike in last 2 hours' },
-    { keyword: '#ChennaiAlert', mentions: '1.8k', trend: 'Growing trend' },
-    { keyword: '#HighWaves', mentions: '1.2k', trend: 'Steady mentions' }
-  ];
+  { keyword: '#Tsunami', mentions: '2.3k', trend: 'Spike in last 2 hours' },
+  { keyword: '#ChennaiAlert', mentions: '1.8k', trend: 'Growing trend' },
+  { keyword: '#HighWaves', mentions: '1.2k', trend: 'Steady mentions' },
+  { keyword: '#CoastalFlooding', mentions: '950', trend: 'Rising concern' },
+  { keyword: '#StaySafe', mentions: '1.5k', trend: 'Community awareness increasing' }
+];
+
+
+  const sentimentData = [
+  { category: 'Critical Alerts', positive: 15, negative: 85, neutral: 0, color: 'bg-red-500' },
+  { category: 'General Reports', positive: 45, negative: 25, neutral: 30, color: 'bg-blue-500' },
+  { category: 'Weather Updates', positive: 60, negative: 15, neutral: 25, color: 'bg-green-500' },
+  { category: 'Safety Tips', positive: 75, negative: 5, neutral: 20, color: 'bg-purple-500' },
+  { category: 'Community Support', positive: 80, negative: 10, neutral: 10, color: 'bg-yellow-500' }
+];
+
 
   useEffect(() => {
     if (currentPage === 'dashboard') {
@@ -176,163 +199,245 @@ const OceanDashboard = () => {
       <div className="pt-4 px-4 pb-8">
         
         {/* Dashboard Page */}
-        {currentPage === 'dashboard' && (
-          <div className="space-y-4 px-10">
-            <h1 className="text-3xl font-bold text-white text-center mb-4">Ocean Hazard Dashboard</h1>
+{currentPage === 'dashboard' && (
+  <div className="space-y-5 px-6 lg:px-16 py-4">
+    <h1 className="text-3xl font-bold text-white text-center mb-5">
+      Ocean Hazard Dashboard
+    </h1>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-              {[
-                { number: '247', label: 'Active Reports' },
-                { number: '15', label: 'Critical Alerts' },
-                { number: '1.2k', label: 'Social Mentions' },
-                { number: '98%', label: 'System Uptime' }
-              ].map((stat, index) => (
-                <div key={index} className="bg-white/90 backdrop-blur-sm rounded-xl p-4 text-center shadow-lg transform hover:scale-103 transition-all duration-300">
-                  <div className="text-2xl font-bold text-blue-600">{stat.number}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+    {/* Stats */}
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      {[
+        { number: '247', label: 'Active Reports' },
+        { number: '15', label: 'Critical Alerts' },
+        { number: '1.2k', label: 'Social Mentions' },
+        { number: '98%', label: 'System Uptime' }
+      ].map((stat, index) => (
+        <div
+          key={index}
+          className="bg-white/90 backdrop-blur-sm rounded-xl p-5 text-center shadow-lg transform hover:scale-102 transition-all duration-300"
+        >
+          <div className="text-xl font-bold text-blue-600">{stat.number}</div>
+          <div className="text-sm md:text-base text-gray-700 font-medium mt-1">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              {/* Map */}
-              <div className="lg:col-span-2 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div className="flex items-center space-x-3 mb-3">
-                  <MapPin className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-lg font-semibold">Live Hazard Map</h2>
-                </div>
-                <div ref={mapRef} className="h-80 rounded-xl overflow-hidden border" />
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      {/* Map */}
+      <div className="lg:col-span-2 bg-white/95 backdrop-blur-sm rounded-xl p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+        <div className="flex items-center space-x-3 mb-3">
+          <MapPin className="w-5 h-5 text-blue-600" />
+          <h2 className="text-lg font-semibold">Live Hazard Map</h2>
+        </div>
+        <div
+          ref={mapRef}
+          className="h-72 lg:h-80 rounded-lg overflow-hidden border"
+        />
+      </div>
+
+      {/* Social Feed only */}
+      <div className="bg-white/95 backdrop-blur-sm rounded-xl p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+        <h2 className="text-lg font-semibold mb-3">Social Media Feed</h2>
+        <div className="space-y-3">
+          {socialPosts.map((post, index) => (
+            <div
+              key={index}
+              className="bg-gray-50 p-3 rounded-lg border-l-4 border-blue-500 hover:bg-gray-100 transition-colors duration-300"
+            >
+              <div className="flex items-center space-x-2 text-xs text-gray-600 mb-2">
+                {getPlatformIcon(post.platform)}
+                <span className="font-medium">
+                  {post.platform} • {post.time}
+                </span>
               </div>
+              <p className="text-gray-800 text-sm">{post.content}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
 
-              {/* Quick Report & Social Feed */}
-              <div className="space-y-4">
-                {/* Quick Report */}
-                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <h2 className="text-lg font-semibold mb-3">Quick Report</h2>
-                  <form onSubmit={submitReport} className="space-y-3">
-                    <select
-                      value={formData.hazardType}
-                      onChange={(e) => setFormData({...formData, hazardType: e.target.value})}
-                      className="w-full p-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 transition-all"
-                      required
-                    >
-                      <option value="">Select Hazard Type</option>
-                      <option value="tsunami">Tsunami</option>
-                      <option value="high-waves">High Waves</option>
-                      <option value="storm-surge">Storm Surge</option>
-                    </select>
-                    <textarea
-                      value={formData.description}
-                      onChange={(e) => setFormData({...formData, description: e.target.value})}
-                      placeholder="Describe what you observed..."
-                      rows="3"
-                      className="w-full p-2 border rounded-lg text-sm resize-none focus:ring-2 focus:ring-blue-500 transition-all"
-                      required
-                    />
-                    <button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl">
-                      Submit Report
-                    </button>
-                  </form>
+        {/* Reports Page */}
+          {currentPage === 'reports' && (
+            <div className="space-y-6 px-[70px]">
+              <h1 className="text-4xl font-bold text-white text-center mb-6">Hazard Reports</h1>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Submit Report Section */}
+                <div className="lg:col-span-1">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+                    <h2 className="text-xl font-semibold mb-4">Submit New Report</h2>
+                    <form onSubmit={submitReport} className="space-y-4 flex-1">
+                      <select
+                        value={formData.hazardType}
+                        onChange={(e) => setFormData({ ...formData, hazardType: e.target.value })}
+                        className="w-full p-3 border rounded-lg text-base focus:ring-2 focus:ring-blue-500 transition-all"
+                        required
+                      >
+                        <option value="">Select Hazard Type</option>
+                        <option value="tsunami">Tsunami</option>
+                        <option value="high-waves">High Waves</option>
+                        <option value="storm-surge">Storm Surge</option>
+                        <option value="coastal-flooding">Coastal Flooding</option>
+                        <option value="rip-current">Rip Current</option>
+                        <option value="marine-pollution">Marine Pollution</option>
+                      </select>
+
+                      <input
+                        type="text"
+                        value={formData.location}
+                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                        placeholder="Enter location"
+                        className="w-full p-3 border rounded-lg text-base focus:ring-2 focus:ring-blue-500 transition-all"
+                        required
+                      />
+
+                      <textarea
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        placeholder="Describe what you observed..."
+                        rows="5"
+                        className="w-full p-3 border rounded-lg text-base resize-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        required
+                      />
+
+                      {/* Buttons row */}
+                      <div className="flex space-x-2">
+                        <button
+                          type="button"
+                          className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        >
+                          📷 Camera
+                        </button>
+                        <button
+                          type="button"
+                          className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        >
+                          📍 Share Location
+                        </button>
+                        <button
+                          type="submit"
+                          className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        >
+                          Submit Report
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
 
-                {/* Social Feed */}
-                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <h2 className="text-lg font-semibold mb-3">Social Media Feed</h2>
-                  <div className="space-y-3 max-h-60 overflow-y-auto">
-                    {socialPosts.slice(0, 3).map((post, index) => (
-                      <div key={index} className="bg-gray-50 p-3 rounded-lg border-l-4 border-blue-500 hover:bg-gray-100 transition-colors duration-300">
-                        <div className="flex items-center space-x-2 text-xs text-gray-600 mb-2">
-                          {getPlatformIcon(post.platform)}
-                          <span>{post.platform} • {post.time}</span>
-                        </div>
-                        <p className="text-gray-800 text-sm">{post.content}</p>
-                      </div>
-                    ))}
+                {/* All Reports Table */}
+                <div className="lg:col-span-1">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+                    <h2 className="text-xl font-semibold mb-4">All Reports</h2>
+                    <div className="overflow-x-auto flex-1">
+                      <table className="w-full">
+                        <thead className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+                          <tr>
+                            <th className="px-4 py-3 text-left text-sm lg:text-base">Time</th>
+                            <th className="px-4 py-3 text-left text-sm lg:text-base">Location</th>
+                            <th className="px-4 py-3 text-left text-sm lg:text-base">Type</th>
+                            <th className="px-4 py-3 text-left text-sm lg:text-base">Reporter</th>
+                            <th className="px-4 py-3 text-left text-sm lg:text-base">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {reports.map((report) => (
+                            <tr
+                              key={report.id}
+                              className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300"
+                            >
+                              <td className="px-4 py-3 text-sm lg:text-base">{report.time}</td>
+                              <td className="px-4 py-3 text-sm lg:text-base">{report.location}</td>
+                              <td className="px-4 py-3 text-sm lg:text-base">{report.type}</td>
+                              <td className="px-4 py-3 text-sm lg:text-base">{report.reporter}</td>
+                              <td className="px-4 py-3">
+                                <span
+                                  className={`px-2 py-1 rounded-full text-xs lg:text-sm transform hover:scale-103 transition-all duration-300 ${getStatusColor(
+                                    report.status
+                                  )}`}
+                                >
+                                  {report.status}
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-
-        {/* Reports Page */}
-        {currentPage === 'reports' && (
-          <div className="space-y-4 px-10">
-            <h1 className="text-3xl font-bold text-white text-center mb-4">Hazard Reports</h1>
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-              <h2 className="text-lg font-semibold mb-3">All Reports</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-                    <tr>
-                      <th className="px-4 py-2 text-left text-xs">Time</th>
-                      <th className="px-4 py-2 text-left text-xs">Location</th>
-                      <th className="px-4 py-2 text-left text-xs">Type</th>
-                      <th className="px-4 py-2 text-left text-xs">Reporter</th>
-                      <th className="px-4 py-2 text-left text-xs">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {reports.map((report) => (
-                      <tr key={report.id} className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300">
-                        <td className="px-4 py-3 text-xs">{report.time}</td>
-                        <td className="px-4 py-3 text-xs">{report.location}</td>
-                        <td className="px-4 py-3 text-xs">{report.type}</td>
-                        <td className="px-4 py-3 text-xs">{report.reporter}</td>
-                        <td className="px-4 py-3">
-                          <span className={`px-2 py-1 rounded-full text-xs transform hover:scale-103 transition-all duration-300 ${getStatusColor(report.status)}`}>
-                            {report.status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        )}
+          )}
 
         {/* Analytics Page */}
         {currentPage === 'analytics' && (
-          <div className="space-y-4 px-10">
-            <h1 className="text-3xl font-bold text-white text-center mb-4">Social Media Analytics</h1>
+          <div className="space-y-4 px-[70px]">
+            <h1 className="text-4xl font-bold text-white text-center mb-6">Social Media Analytics</h1>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Trending Keywords */}
               <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div className="flex items-center space-x-3 mb-3">
-                  <TrendingUp className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-lg font-semibold">Trending Keywords</h2>
+                <div className="flex items-center space-x-3 mb-4">
+                  <TrendingUp className="w-6 h-6 text-blue-600" />
+                  <h2 className="text-xl font-semibold">Trending Keywords</h2>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {trendingKeywords.map((item, index) => (
-                    <div key={index} className="border-b pb-3 hover:bg-gray-50 p-2 rounded transition-colors duration-300">
-                      <div className="font-semibold text-sm">{item.keyword}</div>
-                      <div className="text-xs text-gray-600">{item.mentions} mentions</div>
-                      <div className="text-xs text-gray-500">{item.trend}</div>
+                    <div 
+                      key={index} 
+                      className="border-b pb-4 hover:bg-gray-50 p-3 rounded transition-colors duration-300"
+                    >
+                      <div className="font-semibold text-base">{item.keyword}</div>
+                      <div className="text-sm text-gray-600">{item.mentions} mentions</div>
+                      <div className="text-sm text-gray-500">{item.trend}</div>
                     </div>
                   ))}
                 </div>
               </div>
+
+              {/* Sentiment Analysis */}
               <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div className="flex items-center space-x-3 mb-3">
-                  <BarChart3 className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-lg font-semibold">Sentiment Analysis</h2>
+                <div className="flex items-center space-x-3 mb-4">
+                  <BarChart3 className="w-6 h-6 text-blue-600" />
+                  <h2 className="text-xl font-semibold">Sentiment Analysis</h2>
                 </div>
-                <div className="h-40 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl flex items-center justify-center text-white hover:from-blue-500 hover:to-purple-600 transition-all duration-300">
-                  <div className="text-center">
-                    <BarChart3 className="w-12 h-12 mx-auto mb-2" />
-                    <p className="text-sm">Real-time sentiment tracking</p>
-                  </div>
+                <div className="space-y-5">
+                  {sentimentData.map((data, index) => (
+                    <div key={index} className="space-y-3">
+                      <div className="flex justify-between text-base">
+                        <span className="font-medium">{data.category}</span>
+                        <span className="text-gray-600">Total Posts</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div className="flex h-3 rounded-full overflow-hidden">
+                          <div className="bg-red-500" style={{width: `${data.negative}%`}}></div>
+                          <div className="bg-gray-400" style={{width: `${data.neutral}%`}}></div>
+                          <div className="bg-green-500" style={{width: `${data.positive}%`}}></div>
+                        </div>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-600">
+                        <span>Negative: {data.negative}%</span>
+                        <span>Neutral: {data.neutral}%</span>
+                        <span>Positive: {data.positive}%</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         )}
 
+
         {/* Alerts Page */}
         {currentPage === 'alerts' && (
-          <div className="space-y-4 px-10">
+          <div className="space-y-4 px-[70px]">
             <h1 className="text-3xl font-bold text-white text-center mb-4">Emergency Alerts</h1>
             <div className="space-y-3">
               {alerts.map((alert) => (
@@ -357,8 +462,10 @@ const OceanDashboard = () => {
 
         {/* About Us Page */}
         {currentPage === 'about' && (
-          <div className="space-y-4 px-10">
-            <h1 className="text-3xl font-bold text-white text-center mb-4">About Ocean Shield</h1>
+          <div className="space-y-6 px-[70px]">
+            <h1 className="text-3xl font-bold text-white text-center mb-6">About Ocean Shield</h1>
+            
+            {/* Mission Section */}
             <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300">
               <div className="flex items-center space-x-3 mb-4">
                 <Users className="w-6 h-6 text-blue-600" />
@@ -369,20 +476,100 @@ const OceanDashboard = () => {
                 We combine real-time data analysis, social media monitoring, and citizen reporting to provide early warning systems for tsunamis, 
                 storm surges, and other ocean-related hazards.
               </p>
-              <div className="grid md:grid-cols-3 gap-4 mt-6">
-                <div className="bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition-colors duration-300">
-                  <h3 className="font-semibold text-blue-800 mb-2">Real-time Monitoring</h3>
-                  <p className="text-sm text-blue-700">24/7 surveillance of coastal conditions using advanced sensors and satellite data.</p>
+              <p className="text-gray-700 leading-relaxed">
+                Founded in 2023, our platform serves over 2 million coastal residents across 13 Indian states and union territories. 
+                We process more than 50,000 data points daily from various sources including satellite imagery, oceanographic sensors, 
+                weather stations, and social media platforms to ensure comprehensive coastal safety coverage.
+              </p>
+            </div>
+
+            {/* Key Features Grid */}
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-blue-50 p-6 rounded-xl hover:bg-blue-100 transition-colors duration-300 shadow-lg">
+                <h3 className="font-semibold text-blue-800 mb-3 text-lg">Real-time Monitoring</h3>
+                <p className="text-sm text-blue-700 leading-relaxed">
+                  24/7 surveillance of coastal conditions using advanced sensors, satellite data, and AI-powered analysis. 
+                  Our system monitors wave heights, tidal patterns, and atmospheric conditions across 7,500 km of Indian coastline.
+                </p>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-xl hover:bg-purple-100 transition-colors duration-300 shadow-lg">
+                <h3 className="font-semibold text-purple-800 mb-3 text-lg">Community Engagement</h3>
+                <p className="text-sm text-purple-700 leading-relaxed">
+                  Empowering citizens to report hazards and contribute to coastal safety through our mobile app and web platform. 
+                  Over 45,000 registered community reporters help us validate and cross-reference hazard information.
+                </p>
+              </div>
+              <div className="bg-green-50 p-6 rounded-xl hover:bg-green-100 transition-colors duration-300 shadow-lg">
+                <h3 className="font-semibold text-green-800 mb-3 text-lg">Early Warning System</h3>
+                <p className="text-sm text-green-700 leading-relaxed">
+                  Rapid alert distribution through SMS, mobile notifications, and local emergency services to save lives and minimize property damage. 
+                  Our alerts reach affected areas within 3-5 minutes of hazard detection.
+                </p>
+              </div>
+            </div>
+
+            {/* Statistics Section */}
+            <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-xl p-6 text-white shadow-xl">
+              <h2 className="text-2xl font-semibold mb-6 text-center">Platform Impact</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">2M+</div>
+                  <div className="text-sm opacity-90">Protected Citizens</div>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg hover:bg-purple-100 transition-colors duration-300">
-                  <h3 className="font-semibold text-purple-800 mb-2">Community Engagement</h3>
-                  <p className="text-sm text-purple-700">Empowering citizens to report hazards and contribute to coastal safety.</p>
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">13</div>
+                  <div className="text-sm opacity-90">States Covered</div>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg hover:bg-green-100 transition-colors duration-300">
-                  <h3 className="font-semibold text-green-800 mb-2">Early Warning System</h3>
-                  <p className="text-sm text-green-700">Rapid alert distribution to save lives and minimize property damage.</p>
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">45K+</div>
+                  <div className="text-sm opacity-90">Community Reporters</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold mb-2">99.7%</div>
+                  <div className="text-sm opacity-90">Alert Accuracy</div>
                 </div>
               </div>
+            </div>
+
+            {/* Technology Section */}
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">Advanced Technology Stack</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-3">Data Sources</h3>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• ISRO satellite imagery and ocean color data</li>
+                    <li>• INCOIS buoy network and tide gauge stations</li>
+                    <li>• IMD weather radar and atmospheric sensors</li>
+                    <li>• Social media APIs from major platforms</li>
+                    <li>• Crowd-sourced citizen reports and images</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-3">AI & Analytics</h3>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• Machine learning for pattern recognition</li>
+                    <li>• Natural language processing for social media</li>
+                    <li>• Predictive modeling for hazard forecasting</li>
+                    <li>• Real-time image analysis and verification</li>
+                    <li>• Automated alert generation and distribution</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Section */}
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">Our Commitment</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Ocean Shield is developed by a dedicated team of oceanographers, data scientists, software engineers, and emergency management experts. 
+                We work closely with the National Disaster Management Authority (NDMA), Indian National Centre for Ocean Information Services (INCOIS), 
+                and state disaster management departments to ensure our platform meets the highest standards for public safety.
+              </p>
+              <p className="text-gray-700 leading-relaxed">
+                Our vision is to create a safer coastal India where communities are prepared, informed, and protected from marine hazards. 
+                Through continuous innovation and community partnership, we strive to minimize the impact of natural disasters on coastal populations.
+              </p>
             </div>
           </div>
         )}
