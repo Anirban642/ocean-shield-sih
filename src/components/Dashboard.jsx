@@ -360,7 +360,7 @@ const OceanDashboard = () => {
                           type="button"
                           className="col-span-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 md:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm md:text-base transform hover:scale-103 transition-all duration-300 shadow-lg hover:shadow-xl"
                         >
-                          Camera
+                          Add Media
                         </button>
                         <button
                           type="button"
